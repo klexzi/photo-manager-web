@@ -12,7 +12,10 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
 
 const token = localStorage.getItem('token')
 const cache = new InMemoryCache()
-const baseUrl = 'http://localhost:8000/graphql'
+const baseUrl =
+    process.env.NODE_ENV === 'production'
+        ? 'https://klexzi-photo-manager-server.herokuapp.com/graphql'
+        : 'http://localhost:8000/graphql'
 const httpLink = createUploadLink({
     uri: baseUrl,
     headers: {
