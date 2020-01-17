@@ -74,7 +74,7 @@ const Main = () => {
                 ]}
             />
             {loading && <Spinner />}
-            {data ? (
+            {data && !loading ? (
                 data.photos.length > 0 ? (
                     <PhotoList photos={data.photos} />
                 ) : (
