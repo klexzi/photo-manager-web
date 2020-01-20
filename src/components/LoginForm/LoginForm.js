@@ -17,7 +17,7 @@ const SIGN_IN = gql`
 `
 const LoginForm = ({ history }) => {
     const classes = useStyles()
-    const [signin, { loading, client }] = useMutation(SIGN_IN, {
+    const [signin, { loading }] = useMutation(SIGN_IN, {
         context: { headers: { 'x-token': '' } },
     })
     const [formData, setFormData] = useState({ email: '', password: '' })
@@ -31,7 +31,6 @@ const LoginForm = ({ history }) => {
             setErrorState('Please all fields')
             return
         }
-        await client.resetStore()
         signin({
             variables: { email: formData.email, password: formData.password },
         })

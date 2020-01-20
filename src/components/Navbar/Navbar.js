@@ -8,10 +8,12 @@ import PropTypes from 'prop-types'
 const Navbar = ({ history }) => {
     const classes = useStyles()
     const client = useApolloClient()
-    const handleSignout = async () => {
+    const handleSignout = () => {
         localStorage.removeItem('token')
-        await client.resetStore()
-        history.push('/login')
+        client.resetStore()
+        client.onResetStore(() => {
+            history.push('/login')
+        })
     }
     return (
         <Box
